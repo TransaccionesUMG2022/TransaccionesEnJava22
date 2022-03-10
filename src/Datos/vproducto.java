@@ -42,8 +42,91 @@ public class vproducto {
             }
         } catch (SQLException error) {
             System.out.println(error);
+        } finally {
+            instanciaMysql.cerrarresultado(resultado);
+            instanciaMysql.cerrarStatement(consultaPreparada);
+            instanciaMysql.desconectar(conexion);
         }
         return producto;
+
+    }
+
+    public int insertar(Productos productos) {
+        Connection conexion = null;
+        PreparedStatement consultaPreparada = null;
+
+        int registros = 0;
+
+        try {
+            conexion = instanciaMysql.conectar();
+            consultaPreparada = conexion.prepareStatement(SQL_INSERT);
+
+            consultaPreparada.setString(1, productos.getNombre());
+            consultaPreparada.setDouble(2, productos.getPrecio());
+            consultaPreparada.setInt(3, productos.getExistencias());
+            registros = consultaPreparada.executeUpdate();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+
+        } finally {
+            instanciaMysql.cerrarStatement(consultaPreparada);
+            instanciaMysql.desconectar(conexion);
+        }
+        return registros;
+
+    }
+
+    public int modificar(Productos productos) {
+        Connection conexion = null;
+        PreparedStatement consultaPreparada = null;
+
+        int registros = 0;
+
+        try {
+            conexion = instanciaMysql.conectar();
+            consultaPreparada = conexion.prepareStatement(SQL_UPDATE);
+
+            consultaPreparada.setString(1, productos.getNombre());
+            consultaPreparada.setDouble(2, productos.getPrecio());
+            consultaPreparada.setInt(3, productos.getExistencias());
+            consultaPreparada.setInt(4, productos.getId_Producto());
+
+            registros = consultaPreparada.executeUpdate();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+
+        } finally {
+            instanciaMysql.cerrarStatement(consultaPreparada);
+            instanciaMysql.desconectar(conexion);
+        }
+        return registros;
+
+    }
+
+    public int eliminar(Productos productos) {
+
+        Connection conexion = null;
+        PreparedStatement consultaPreparada = null;
+
+        int registros = 0;
+
+        try {
+            conexion = instanciaMysql.conectar();
+            consultaPreparada = conexion.prepareStatement(SQL_DELETE);
+
+            consultaPreparada.setInt(1, productos.getId_Producto());
+            registros = consultaPreparada.executeUpdate();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+
+        } finally {
+            instanciaMysql.cerrarStatement(consultaPreparada);
+            instanciaMysql.desconectar(conexion);
+        }
+        return registros;
 
     }
 
