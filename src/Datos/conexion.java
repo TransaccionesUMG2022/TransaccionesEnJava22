@@ -32,9 +32,9 @@ public class conexion {
 
     }
 
-    public void desconectar(Connection Conexion) {
+    public void desconectar(Connection conexion) {
         try {
-            Conexion.close();
+            conexion.close();
 
         } catch (SQLException error) {
             System.out.println(error);

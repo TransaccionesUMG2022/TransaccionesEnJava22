@@ -1,13 +1,21 @@
 package Test;
 
-public class TestProductos extends javax.swing.JFrame {
+import Datos.vproducto;
+import Domain.Productos;
+import java.util.List;
+import javax.swing.JOptionPane;
 
+public class TestProductos extends javax.swing.JFrame {
+    
+    vproducto productosv = new vproducto();
+    Productos productos;
+    
     public TestProductos() {
         initComponents();
         this.setTitle("Productos");
         this.setLocationRelativeTo(null);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -164,6 +172,11 @@ public class TestProductos extends javax.swing.JFrame {
 
         btnmostrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnmostrar.setText("Mostrar");
+        btnmostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmostrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -209,12 +222,32 @@ public class TestProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
-        // TODO add your handling code here:
+        String Nombre = txtnombre.getText().trim();
+        double Precio = Double.parseDouble(txtprecio.getText());
+        int Existencias = Integer.parseInt(txtexistencias.getText());
+        
+        productos = new Productos(Nombre, Precio, Existencias);
+        productosv.insertar(productos);
+        JOptionPane.showMessageDialog(null, "Producto registrado");
     }//GEN-LAST:event_btningresarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmostrarActionPerformed
+        
+        List<Productos> productos = productosv.listar();
+        for (Productos objeto : productos) {
+            listadatos.append(objeto.toString());
+        }
+        
+
+    }//GEN-LAST:event_btnmostrarActionPerformed
+    
+    private void limpiarCajas() {
+        txtnombre.setText("");
+        txtprecio.setText("");
+        txtexistencias.setText("");
+        txtid.setText("");
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
