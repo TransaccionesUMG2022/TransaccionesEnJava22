@@ -21,11 +21,9 @@ public class TestProductos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtid = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtprecio = new javax.swing.JTextField();
         txtexistencias = new javax.swing.JTextField();
@@ -39,14 +37,12 @@ public class TestProductos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listadatos = new javax.swing.JTextArea();
         btnmostrar = new javax.swing.JButton();
+        btbuscat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Id:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Nombre:");
@@ -76,12 +72,10 @@ public class TestProductos extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtid)
                     .addComponent(txtnombre)
                     .addComponent(txtprecio)
                     .addComponent(txtexistencias))
@@ -91,7 +85,7 @@ public class TestProductos extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(160, 160, 160))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(203, 203, 203)
+                .addGap(205, 205, 205)
                 .addComponent(btningresar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -100,25 +94,21 @@ public class TestProductos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel5)
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(87, 87, 87)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtexistencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                    .addComponent(txtexistencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btningresar)
-                .addGap(19, 19, 19))
+                .addGap(25, 25, 25))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
@@ -128,6 +118,11 @@ public class TestProductos extends javax.swing.JFrame {
 
         btneditar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btneditar.setText("Editar");
+        btneditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditarActionPerformed(evt);
+            }
+        });
 
         btneliminar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btneliminar.setText("Eliminar");
@@ -178,6 +173,13 @@ public class TestProductos extends javax.swing.JFrame {
             }
         });
 
+        btbuscat.setText("BUSCAR");
+        btbuscat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbuscatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,6 +191,8 @@ public class TestProductos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btbuscat, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -203,7 +207,11 @@ public class TestProductos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btbuscat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(39, 39, 39)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -218,7 +226,18 @@ public class TestProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-        // TODO add your handling code here:
+        if(!txtidp.getText().equals("")){//Verifica que no este vacio el producto que se va a eliminar
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "¿Está seguro de eliminar el producto?","Confirmar",2);//Pregunta para confirmar la eliminacion
+
+            if(confirmacion==0){//Procede a la eliminacion
+         
+                Productos dts = new Productos();
+
+                dts.setNombre(txtidp.getText());
+
+                productosv.eliminar(dts);
+            }
+        }
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
@@ -232,7 +251,7 @@ public class TestProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btningresarActionPerformed
 
     private void btnmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmostrarActionPerformed
-        
+     
         List<Productos> productos = productosv.listar();
         for (Productos objeto : productos) {
             listadatos.append(objeto.toString());
@@ -240,12 +259,39 @@ public class TestProductos extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_btnmostrarActionPerformed
+
+    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+        
+        String Nombre = txtnombre.getText().trim();
+        double Precio = Double.parseDouble(txtprecio.getText());
+        int Existencias = Integer.parseInt(txtexistencias.getText());
+        
+        productos = new Productos(Nombre, Precio, Existencias);
+        
+        if(!txtidp.getText().equals("")){//Verifica que no este vacio el producto que se va a eliminar
+                
+                Productos dts = new Productos();
+                dts.setNombre(txtidp.getText());          
+        }
+       
+        productosv.modificar(productos,txtidp.getText());
+        
+        JOptionPane.showMessageDialog(null, "Producto modificado");
+        limpiarCajas();
+    }//GEN-LAST:event_btneditarActionPerformed
+
+    private void btbuscatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbuscatActionPerformed
+      List<Productos> productos = productosv.mostrar(txtidp.getText());
+        for (Productos objeto : productos) {
+            listadatos.append(objeto.toString());
+        }
+    }//GEN-LAST:event_btbuscatActionPerformed
     
     private void limpiarCajas() {
         txtnombre.setText("");
         txtprecio.setText("");
         txtexistencias.setText("");
-        txtid.setText("");
+
     }
     
     public static void main(String args[]) {
@@ -281,11 +327,11 @@ public class TestProductos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btbuscat;
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btningresar;
     private javax.swing.JButton btnmostrar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -296,7 +342,6 @@ public class TestProductos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea listadatos;
     private javax.swing.JTextField txtexistencias;
-    private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtidp;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtprecio;
